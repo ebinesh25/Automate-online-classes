@@ -1,4 +1,4 @@
-    This program will join online classes for you by muting your video and mic.
+    This python program will join online classes for you by muting your video and mic.
     After joining the class it will post a "Good morning/afternoon sir/mam"  msg in the chat box. 
     ------------------------------------------------------------------------------------------------------
     REQUIREMENTS:
