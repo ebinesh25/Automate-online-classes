@@ -8,39 +8,40 @@ import time
 PATH = "/home/positron/Downloads/chromedriver-linux64"
 driver = webdriver.Chrome(PATH)
 actions = ActionChains(driver)
+link = "https://meet.google.com/dve-fjud-dth"
+
+def join_now(link):
+    driver.get(link)
+    print(driver.title)
+
+    # class name for mute button is class="GKGgdd"
+    # For video mute clas="GOH7Zb"
 
 
-driver.get("https://meet.google.com/dve-fjud-dth")
-print(driver.title)
+    # search = driver.find_element_by_name("s")
+    # search.send_keys("test")
+    # search.send_keys(Keys.RETURN)
 
-# class name for mute button is class="GKGgdd"
-# For video mute clas="GOH7Zb"
+    actions.key_down(Keys.CONTROL).send_keys("d").key_up(Keys.CONTROL) # To mute mic
+    actions.key_down(Keys.CONTROL).send_keys("e").key_up(Keys.CONTROL) # To mute camera
 
+    join = driver.find_element_by_xpath("//*[text()='Join now']")
+    join.click()
 
-# search = driver.find_element_by_name("s")
-# search.send_keys("test")
-# search.send_keys(Keys.RETURN)
+    try:
+        main = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "ow3")))
 
-actions.key_down(Keys.CONTROL).send_keys("d").key_up(Keys.CONTROL) # To mute mic
-actions.key_down(Keys.CONTROL).send_keys("e").key_up(Keys.CONTROL) # To mute camera
+        list_of_buttons = main.find_elements_by_class("r6xAKc")
 
-join = driver.find_element_by_xpath("//*[text()='Join now']")
-join.click()
+        chat = list_of_buttons[3]
+        chat.click()
 
-try:
-     main = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "ow3")))
-
-     list_of_buttons = main.find_elements_by_class("r6xAKc")
-
-     chat = list_of_buttons[3]
-     chat.click()
-
-     textBox = main.find_elements_by_class("NiQxf")
-     textBox.send_keys("Good Morning Makka")
-     
-    #  articles = main.find_elements_by_tag_name("article")
-    #  for article in articles:
-    #     header = article.find_element_by_class_name("entry-sumary")
-    #     print (header.text) 
-finally:
-    driver.quit()
+        textBox = main.find_elements_by_class("NiQxf")
+        textBox.send_keys("Good Morning Makka")
+        
+        #  articles = main.find_elements_by_tag_name("article")
+        #  for article in articles:
+        #     header = article.find_element_by_class_name("entry-sumary")
+        #     print (header.text) 
+    finally:
+        driver.quit()
