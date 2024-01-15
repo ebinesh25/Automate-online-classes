@@ -29,7 +29,7 @@ The script fetches the class name from the source code files, presses buttons us
 
 4. Run the Python script:
    ```
-   python gmeet_attender.py
+   python OnlineClassAttender.py
    ```
 
 5. Enjoy hands-free attendance in your Gmeet classes!
